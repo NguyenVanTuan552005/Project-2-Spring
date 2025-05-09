@@ -1,28 +1,23 @@
 package com.nvt.web.controlleradvice;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.nvt.web.customexceptions.InvalidDataException;
-import com.nvt.web.dto.ErrorBuildingDTO;
+import com.nvt.web.dto.ErrorDTO;
 
 @ControllerAdvice
 public class ControllerAdvisor {
-	@ExceptionHandler(InvalidDataException.class)
-	public ResponseEntity<ErrorBuildingDTO> handleInvalidException(InvalidDataException ex) {
-		ErrorBuildingDTO error = new ErrorBuildingDTO();
-		
+	@ExceptionHandler(SQLException.class)
+	public ResponseEntity<ErrorDTO> handleSQLException(SQLException ex) {
+		ErrorDTO error = new ErrorDTO();
 		error.setError(ex.getMessage());
-		List<String> details = new ArrayList<>();
-		details.add("Name must not null!");
-		details.add("NumberOfBase must not null!");
-		error.setDetail(details);
-		
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+		error.setDetails(List.of(ex.getStackTrace()).stream().map(s -> s.toString()).collect(Collectors.toList()));
+		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

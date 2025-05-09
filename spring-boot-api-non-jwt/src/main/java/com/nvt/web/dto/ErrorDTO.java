@@ -2,9 +2,9 @@ package com.nvt.web.dto;
 
 import java.util.List;
 
-public class ErrorBuildingDTO {
+public class ErrorDTO {
 	private String error;
-	private List<String> detail;
+	private List<String> details;
 	
 	public String getError() {
 		return error;
@@ -12,11 +12,11 @@ public class ErrorBuildingDTO {
 	public void setError(String error) {
 		this.error = error;
 	}
-	public List<String> getDetail() {
-		return detail;
+	public List<String> getDetails() {
+		return details;
 	}
-	public void setDetail(List<String> detail) {
-		this.detail = detail;
+	public void setDetails(List<String> details) {
+		this.details = details;
 	}
 	
 }
