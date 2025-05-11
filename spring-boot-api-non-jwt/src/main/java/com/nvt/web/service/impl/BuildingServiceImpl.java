@@ -17,7 +17,7 @@ public class BuildingServiceImpl implements BuildingService {
 	BuildingReponsitory buildingReponsitory;
 	
 	@Override
-	public List<BuildingResponseDTO> reponseBuilding(Map<String, Object> params, List<String> typeCode) throws SQLException {
-		return buildingReponsitory.findBuilding(params, typeCode);
+	public List<BuildingResponseDTO> reponseBuilding(Map<String, String> params, List<String> typeCodes) throws SQLException {
+		return buildingReponsitory.findBuilding(params, typeCodes);
 	}
 }

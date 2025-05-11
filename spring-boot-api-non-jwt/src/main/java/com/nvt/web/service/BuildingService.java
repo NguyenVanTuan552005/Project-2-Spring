@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.nvt.web.dto.response.BuildingResponseDTO;
 
 public interface BuildingService {
-	public List<BuildingResponseDTO> reponseBuilding(@RequestParam Map<String, Object> params, List<String> typeCode) throws SQLException;
+	public List<BuildingResponseDTO> reponseBuilding(@RequestParam Map<String, String> params, List<String> typeCodes) throws SQLException;
 }

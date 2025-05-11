@@ -18,8 +18,8 @@ public class BuildingController {
 	BuildingService buildingService;
 	
 	@GetMapping("/building-list")
-	public List<BuildingResponseDTO> getBuilding(@RequestParam Map<String, Object> params, 
-												@RequestParam(value = "typeCode") List<String> typeCodes) throws SQLException {
+	public List<BuildingResponseDTO> getBuilding(@RequestParam(required = false) Map<String, String> params, 
+												@RequestParam(value = "typeCode", required = false) List<String> typeCodes) throws SQLException {
 		return buildingService.reponseBuilding(params, typeCodes);
 	}
 }
